@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: Title 1
+  author: Author 1
+  isbn: 0123456789
+  publisher: CPH
+
+two:
+  title: Title 2
+  author: Author 2
+  isbn: 0123456789123
+  publisher: Random House

@@ -1,0 +1,33 @@
+<h1>Search Results </h1>
+
+<% if @inventory.count > 0 %>
+	<table>
+		<tr>
+			<th>Title</th>
+			<th>Library</th>
+			<th/>
+			<th/>
+		<tr>
+		
+		<% @inventory.each do |inv| %>
+			<tr>
+				<td><%= inv.book.title %></td>
+				<td><%= inv.library.name %></td>
+				<td></td>
+				<td><%= link_to 'View', book_path(inv.book) %></td>
+				<td>
+					<%= form_for(inv.library.requests.build) do |f| %>
+						<div><%= hidden_field_tag :book_id, inv.book.id %></div>
+						<div><%= hidden_field_tag :library_id, inv.library.id %></div>
+						<%= f.submit "Request" %>
+					<% end %>
+				</td>
+			</tr>
+		<% end %>
+	</table>
+<% else %>
+	<h2>No Results</h2>
+	<a href="<%= search_index_path %>" >
+		Try Again
+	</a>
+<% end %>

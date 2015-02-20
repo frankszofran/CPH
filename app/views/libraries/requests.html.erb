@@ -1,0 +1,25 @@
+<% @library ||= current_library %>
+<h1>Book requests for <%= @library.name %></h1>
+<p>The most requested books in the library</p>
+
+<table>
+	<tr>
+		<th>Title</th>
+		<th>Author</th>
+		<th>ISBN</th>
+		<th>Publisher</th>
+		<th>Description</th>
+		<th>Requests</th>
+	</tr>
+	
+	<% @requests.each do |rq| %>
+		<tr>
+			<td><%= rq.book.title %></td>
+			<td><%= rq.book.author %></td>
+			<td><%= rq.book.isbn %></td>
+			<td><%= rq.book.publisher %></td>
+			<td><%= rq.book.description %></td>
+			<td><%= rq.count %></td>
+		</tr>
+	<% end %>
+</table>

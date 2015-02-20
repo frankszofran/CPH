@@ -1,0 +1,30 @@
+<% @library ||= current_library %>
+<h1>Books</h1>
+<p>A complete listing of all books available for library purchase</p>
+
+<table>
+	<tr>
+		<th>Title</th>
+		<th>Author</th>
+		<th>ISBN</th>
+		<th>Publisher</th>
+		<th>Description</th>
+		<th/>
+		<th/>
+	</tr>
+	
+	<% @books.each do |book| %>
+		<tr>
+			<td><%= book.title %></td>
+			<td><%= book.author %></td>
+			<td><%= book.isbn %></td>
+			<td><%= book.publisher %></td>
+			<td><%= book.description %></td>
+			<td><%= link_to 'Edit', edit_book_path(book) %></td>
+		</tr>
+	<% end %>
+</table>
+
+<a href="<%= new_book_path %>" >
+	Add a Book
+</a>

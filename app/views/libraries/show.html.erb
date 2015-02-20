@@ -1,0 +1,56 @@
+<h1>Library Details</h1>
+
+<p>
+	Name:<br>
+	<%= @library.name %>
+</p>
+
+<p>
+	Address:<br>
+	<%= @library.address %>
+</p>
+
+<p>
+	Ciity, State Zip<br>
+	<%= @library.city %>,<%= @library.state %><%= @library.zip %>
+	
+</p>
+
+<p>
+	Search this library
+	<%= form_tag(book_inventory_library_path, :method => "get") do %>
+		<div>
+			Title:
+			<%= text_field_tag :title_search, params[:title_search], placeholder: "Search Titles" %>
+			<button type="submit">Search</button><br>
+		</div>
+	<% end %>
+	<%= form_tag(book_inventory_library_path, :method => "get") do %>
+		<div>
+			ISBN:
+			<%= text_field_tag :isbn_search, params[:isbn_search], placeholder: "Search by ISBN" %>
+			<button type="submit">Search</button><br>
+		</div>
+	<% end %>
+</p>
+
+<p>
+	<a href="<%= book_inventory_library_path(@library.id) %>">
+		<strong id="books" class="stat">
+			<%= @library.books.count %>
+		</strong>
+	books in inventory
+	</a><br>
+	<a href="<%= manage_inventory_books_path %>">
+		Manage Book Inventory
+	</a><br>
+	<p>
+		<% if @library.mostPopularBook %>
+			Most Popular Book: <%= @library.mostPopularBook.title %><br>
+		<% end %>
+		<a href="<%= requests_library_path(@library) %>">
+			Book Requests
+		<a>
+	</p>
+	
+</p>

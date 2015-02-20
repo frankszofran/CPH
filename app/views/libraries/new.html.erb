@@ -1,0 +1,45 @@
+<%= form_for @library, html: {class: "form-horizontal"} do |f| %>
+
+  <% if @library.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@library.errors.count, "error") %> prohibited
+        this library from being saved:
+      </h2>
+      <ul>
+        <% @library.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <fieldset id="library-meta">
+	<ol>
+		<li class="control-group" >
+			<%= f.label :name, "Library Name", class: "control-label" %>
+			<div class="controls"><%= f.text_field :name %></div>
+		</li>
+		<li class="control-group" >
+			<%= f.label :address, "Street Address", class: "control-label" %>
+			<div class="controls" ><%= f.text_field :address %></div>
+		</li>
+		<li class="control-group" >
+			<%= f.label :city, "City", class: "control-label" %>
+			<div class="controls" ><%= f.text_field :city %></div>
+		</li>
+		<li class="control-group" >
+			<%= f.label :state, "State", class: "control-label" %>
+			<div class="controls" ><%= f.text_field :state %></div>
+		</li>
+		<li class="control-group" >
+			<%= f.label :zip, "Zip Code", class: "control-label" %>
+			<div class="controls" ><%= f.text_field :zip %></div>
+		</li>
+	</ol>
+  </fieldset>
+	  
+  <p>
+		<%= f.submit %>
+  </p>
+<% end %>

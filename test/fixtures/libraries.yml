@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: Central
+  address: 123 Olive
+  city: St. Louis
+  state: MO
+  zip: 63101
+
+two:
+  name: County
+  address: 2341 Lindbergh
+  city: Clayton
+  state: MO
+  zip: 63105

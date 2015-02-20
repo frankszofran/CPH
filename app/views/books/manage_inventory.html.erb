@@ -1,0 +1,44 @@
+<% @library ||= current_library %>
+<h1>Books</h1>
+<p>A complete listing of all books available for library purchase</p>
+
+<table>
+	<tr>
+		<th>Title</th>
+		<th>Author</th>
+		<th>ISBN</th>
+		<th>Publisher</th>
+		<th>Description</th>
+		<th/>
+		<th/>
+	</tr>
+	
+	<% @books.each do |book| %>
+		<tr>
+			<td><%= book.title %></td>
+			<td><%= book.author %></td>
+			<td><%= book.isbn %></td>
+			<td><%= book.publisher %></td>
+			<td><%= book.description %></td>
+			<td><% if @library.inInventory?(book) %>
+					<%= form_for(@library.inventories.find_by(book_id: book.id), html: {method: :delete}) do |f| %>
+						<div><%= hidden_field_tag :library_id, @library.id %></div>
+						<%= f.submit "Remove" %>
+					<% end %>
+				<% else %>
+					<%= form_for(@library.inventories.build) do |f| %>
+						<div><%= hidden_field_tag :book_id, book.id %></div>
+						<div><%= hidden_field_tag :library_id, @library.id %></div>
+						<%= f.submit "Add" %>
+					<% end %>
+				<% end %>
+			</td>		
+		</tr>
+	<% end %>
+</table>
+
+<% if @library %>
+	<a href="<%= library_path(@library) %>" >
+		Back to Library homepage
+	</a>
+<% end %>

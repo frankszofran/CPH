@@ -1,0 +1,46 @@
+<h1>Books</h1>
+
+<% if @inventory.count > 0 %>
+	<p>Books available at <%= @library.name %></p>
+	<table>
+		<tr>
+			<th>Title</th>
+			<th>Author</th>
+			<th>ISBN</th>
+			<th>Publisher</th>
+			<th>Description</th>
+			<th>Requests</th>
+			<th/>
+		</tr>
+	
+
+		<% @inventory.each do |inv| %>
+			<tr>
+				<td><%= inv.book.title %></td>
+				<td><%= inv.book.author %></td>
+				<td><%= inv.book.isbn %></td>
+				<td><%= inv.book.publisher %></td>
+				<td><%= inv.book.description %></td>
+				<td><%= @library.requestCount(inv.book) %></td>
+				<td>
+					<%= form_for(@library.requests.build) do |f| %>
+						<div><%= hidden_field_tag :book_id, inv.book.id %></div>
+						<div><%= hidden_field_tag :library_id, @library.id %></div>
+						<%= f.submit "Request" %>
+					<% end %>
+				</td>
+			</tr>
+		<% end %>
+	</table>
+<% else %>
+	<h2>No books found here</h2>
+	<a href="<%= search_route %>" >
+		Try at all of the libraries
+	</a>
+<% end %>
+
+<% if @library %>
+	<a href="<%= library_path(@library) %>" >
+		Back to Library homepage
+	</a>
+<% end %>

@@ -1,0 +1,37 @@
+<head>
+	<h1>City Library</h1>
+	<p>Welcome to the City Library system</p>
+</head>
+<body>
+
+
+	<table>
+		<tr>
+			<th>Name</th>
+			<th>Address</th>
+			<th span="2">City, State zip</th>
+			<th/>
+			<th/>
+		</tr>
+		
+		<% @libraries.each do |library| %>
+			<tr>
+				<td><%= library.name %></td>
+				<td><%= library.address %></td>
+				<td><%= library.city %>, <%= library.state %> <%= library.zip %></td>
+				<td><%= link_to 'View', library_path(library) %></td>
+				<td><%= link_to 'Edit', edit_library_path(library) %></td>
+			</tr>
+		<% end %>
+	</table>
+	
+	<a href="<%= new_library_path %>" >
+		Add a Library
+	</a><br>
+	<a href="<%= books_path %>" >
+		View the book catalog
+	</a><br>
+	<a href="<%= search_index_path %>" >
+		Search all libraries
+	</a>
+</body>
